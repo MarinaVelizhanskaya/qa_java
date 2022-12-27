@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnitRunner;
+
+import java.util.Arrays;
 import java.util.List;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -26,9 +28,9 @@ public class CatTest {
     public void getFoodReturnsValidListFood() throws Exception {
         Cat cat = new Cat(feline);
         Mockito.when(feline.eatMeat()).thenReturn(List.of("Животные", "Птицы", "Рыба"));
-        Assert.assertArrayEquals(
-                new String[]{"Животные", "Птицы", "Рыба"},
-                cat.getFood().toArray()
-        );
+        List<String> expected = Arrays.asList( "Животные", "Птицы", "Рыба" );
+        List<String> actual = cat.getFood();
+
+        Assert.assertEquals(expected, actual);
     }
 }

@@ -1,28 +1,11 @@
 import com.example.Feline;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
-
-@RunWith(Parameterized.class)
+import java.util.Arrays;
+import java.util.List;
 
 public class FelineTest {
-   private final int kittensCount;
-    private final int expected;
-
-    public FelineTest(int kittensCount, int expected) {
-        this.kittensCount = kittensCount;
-        this.expected = expected;
-    }
-    @Parameterized.Parameters
-    public static Object[][] getSomeKittens() {
-        return new Object[][] {
-                { 0, 0},
-                { 1, 1},
-                {10, 10}
-        };
-    }
 
     @Test
     public void getFamilyReturnsValidFamily () {
@@ -34,19 +17,10 @@ public class FelineTest {
     @Test
     public void eatMeatReturnsValidListFood() throws Exception {
         Feline feline = new Feline();
-        Assert.assertArrayEquals(
-                new String[]{"Животные", "Птицы", "Рыба"},
-                feline.eatMeat().toArray()
-        );
-    }
-
-    @Test
-    public void getKittensWithParameter() {
-        Feline feline = new Feline();
-        int actual = feline.getKittens(kittensCount);
+        List<String> expected = Arrays.asList( "Животные", "Птицы", "Рыба" );
+        List<String> actual = feline.eatMeat();
         Assert.assertEquals(expected, actual);
     }
-
     @Test
     public void getKittensWithoutParameter() {
         Feline feline = new Feline();
